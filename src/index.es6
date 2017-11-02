@@ -6,6 +6,8 @@
 
 let program = require('commander');
 let colors = require('colors');
+//let stringify = require('json-stringify');
+let util = require("util");
 let firstArg, secondArg, params = null;
 
 function list(val) {
@@ -13,7 +15,7 @@ function list(val) {
 }
 
 program
-    .version('0.0.1')
+    .version('0.0.2')
     .arguments('<cmd> <file>')
     .option('-p, --parameters <items>', 'List of params', list)
     .option('-p, --pseudo <items>', 'List of pseudo overrides', list)
@@ -30,7 +32,7 @@ if (typeof firstArg === 'undefined') {
     process.exit(1);
 }
 
-if(firstArg == "validate"){
+if(firstArg == "validate" || firstArg == "validate-json-output"){
     const validator = require('./validator');
 
     if(program.parameters){
@@ -50,6 +52,11 @@ if(firstArg == "validate"){
     }
 
     let result = validator.validateFile(secondArg);
+
+    if(firstArg == "validate-json-output"){
+        //console.log(JSON.Stringify(result))
+        console.log(util.inspect(result, {showHidden: false, depth: null}));
+    }else{
 
     // Show the errors
     console.log((result['errors']['info'].length + " infos").grey);
@@ -77,6 +84,7 @@ if(firstArg == "validate"){
         console.log('Template invalid!'.red.bold);
     }else{
         console.log('Template valid!'.green);
+    }
     }
 
 

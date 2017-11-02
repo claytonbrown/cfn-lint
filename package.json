@@ -19,6 +19,7 @@
     "commander": "latest",
     "fs": "0.0.2",
     "js-yaml": "^3.7.0",
+    "json-stringify": "^1.0.0",
     "opn": "latest",
     "winston": "latest"
   },
