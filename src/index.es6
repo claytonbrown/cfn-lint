@@ -54,37 +54,37 @@ if(firstArg == "validate" || firstArg == "validate-json-output"){
     let result = validator.validateFile(secondArg);
 
     if(firstArg == "validate-json-output"){
-        //console.log(JSON.Stringify(result))
+        // Output results as JSON
         console.log(util.inspect(result, {showHidden: false, depth: null}));
     }else{
 
-    // Show the errors
-    console.log((result['errors']['info'].length + " infos").grey);
-    for(let info of result['errors']['info']){
-        console.log('Resource: '+ info['resource'].grey);
-        console.log('Message: '+ info['message'].grey);
-        console.log('Documentation: '+ info['documentation'].grey + '\n');
-    }
+        // Show the errors on console
+        console.log((result['errors']['info'].length + " infos").grey);
+        for(let info of result['errors']['info']){
+            console.log('Resource: '+ info['resource'].grey);
+            console.log('Message: '+ info['message'].grey);
+            console.log('Documentation: '+ info['documentation'].grey + '\n');
+        }
 
-    console.log((result['errors']['warn'].length + " warn").yellow);
-    for(let warn of result['errors']['warn']){
-        console.log('Resource: ' + warn['resource'].yellow);
-        console.log('Message: ' + warn['message'].yellow);
-        console.log('Documentation: ' + warn['documentation'].yellow + '\n');
-    }
+        console.log((result['errors']['warn'].length + " warn").yellow);
+        for(let warn of result['errors']['warn']){
+            console.log('Resource: ' + warn['resource'].yellow);
+            console.log('Message: ' + warn['message'].yellow);
+            console.log('Documentation: ' + warn['documentation'].yellow + '\n');
+        }
 
-    console.log((result['errors']['crit'].length + " crit").red);
-    for(let crit of result['errors']['crit']){
-        console.log('Resource: ' + crit['resource'].red);
-        console.log('Message: ' + crit['message'].red);
-        console.log('Documentation: ' + crit['documentation'].red + '\n');
-    }
+        console.log((result['errors']['crit'].length + " crit").red);
+        for(let crit of result['errors']['crit']){
+            console.log('Resource: ' + crit['resource'].red);
+            console.log('Message: ' + crit['message'].red);
+            console.log('Documentation: ' + crit['documentation'].red + '\n');
+        }
 
-    if(result['templateValid'] === false){
-        console.log('Template invalid!'.red.bold);
-    }else{
-        console.log('Template valid!'.green);
-    }
+        if(result['templateValid'] === false){
+            console.log('Template invalid!'.red.bold);
+        }else{
+            console.log('Template valid!'.green);
+        }
     }
 
 
