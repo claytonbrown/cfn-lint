@@ -24,15 +24,15 @@
     "winston": "latest"
   },
   "devDependencies": {
-    "gulp": "latest",
+    "babel-cli": "^6.26.0",
     "babel-polyfill": "latest",
-    "gulp-babel": "latest",
-    "gulp-sourcemaps": "latest",
     "babel-preset-es2015": "latest",
     "babel-register": "latest",
-    "babel-cli": "latest",
-    "mocha": "latest",
-    "chai": "latest"
+    "chai": "latest",
+    "gulp": "latest",
+    "gulp-babel": "latest",
+    "gulp-sourcemaps": "latest",
+    "mocha": "latest"
   },
   "scripts": {
     "build": "babel src --presets babel-preset-es2015 --out-dir lib",

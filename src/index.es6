@@ -55,7 +55,8 @@ if(firstArg == "validate" || firstArg == "validate-json-output"){
 
     if(firstArg == "validate-json-output"){
         // Output results as JSON
-        console.log(util.inspect(result, {showHidden: false, depth: null}));
+        //console.log(util.inspect(result, {showHidden: false, depth: null}));
+        console.log(JSON.stringify(result));
     }else{
 
         // Show the errors on console
