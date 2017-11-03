@@ -3,13 +3,15 @@
 A more friendly CloudFormation JSON and YAML Validator
 
 `cfn-lint` is a tool used to improve your CloudFormation development cycle. If you are here, you are probably
-fed up of waiting for 10 minutes or more before CloudFormation gives you an error due to a typo. This tool aims to 
-remove that waste of time. The tool takes the CloudFormation template, and resolves all the Intrinsic functions 
-defined before checking the Properties of Resources defined. 
+fed up of waiting for 10 minutes or more before CloudFormation gives you an error due to a typo. This tool aims to
+remove that waste of time. The tool takes the CloudFormation template, and resolves all the Intrinsic functions
+defined before checking the Properties of Resources defined.
 
 The tool can be used over the commandline using `cfn-lint`, or can be used as a module within another JavaScript application.
 
 *Note: This tool is currently case-sensitive in relation to AWS CloudFormation types, for example aws::lambda::function != AWS::Lambda::Function.*
+
+test
 
 ## Installation
 
@@ -33,7 +35,7 @@ If you get `/usr/bin/env: 'node': No such file or directory` ensure your system 
 
 `cfn-lint validate my_template.yaml --parameters key="my value" --pseudo AWS::Region=ap-northeast-1,AWS::AccountId=000000000000`
 
-`cfn-lint docs AWS::Lambda::Function` 
+`cfn-lint docs AWS::Lambda::Function`
 
 `cfn-lint docs AWS::Lambda::Function.Code`
 
@@ -100,7 +102,7 @@ Template invalid!
 
 ## Deploying your template
 
-CloudFormation tends to involve a bit of trail and error. To enable quick development, 
+CloudFormation tends to involve a bit of trail and error. To enable quick development,
 the following method can be used to prevent the annoying 'ROLLBACK' scenarios where the whole stack
 must be deleted and recreated.
 
@@ -113,7 +115,7 @@ Resources:
 
 After each change to your template, simply update the stack you just created. If the stack failed to deploy
 for some reason you can perform an 'Update Stack' operation, without needing to delete and recreate
-the stack from scratch. You can also use this method to keep parameters populated during the development 
+the stack from scratch. You can also use this method to keep parameters populated during the development
 phase. This method will work using the AWS Console or the CLI tools.
 
 
@@ -134,7 +136,7 @@ You can add an issue on the [Github Issue Page](https://github.com/martysweet/cf
 ### Doesn't the AWS API provide this functionality?
 Partially. The AWS API `cloudformation validate-template` only checks the validity of the template, this includes the
 expected parameters for intrinsic functions, resource types and general structure of the JSON or YAML template it has been given. The
-AWS API does not detect incorrect resource property names or incorrect resource property types (e.g. string, bool, list) which are typically 
+AWS API does not detect incorrect resource property names or incorrect resource property types (e.g. string, bool, list) which are typically
 only detected when CloudFormation attempts to deploy the resources with the incorrect configurations.
 
 ### Got any other questions?
@@ -144,13 +146,13 @@ Ask a question on the [Github Issue Page](https://github.com/martysweet/cfn-lint
 
 ### Unit Tests
 
-Tests can be run using `npm test`. There should be a test case for every template error, 
-for example an invalid parameter for `Fn::Join` or an incorrect reference for `Ref`. 
+Tests can be run using `npm test`. There should be a test case for every template error,
+for example an invalid parameter for `Fn::Join` or an incorrect reference for `Ref`.
 The tests depend on `Mocha` and `chai`.
 
 ### IDE Setup
 
-If you use a JetBrains editor, the following Run Configuration can be setup 
+If you use a JetBrains editor, the following Run Configuration can be setup
 for the Mocha test suite:
 
 Node Options: --harmony
@@ -169,7 +171,7 @@ $ cfn-lint <some command>
 
 ### Resource Attribute Mocking
 In order to simulate the intrinsic functions to catch errors before deployment,
-attributes for Properties and Resources are mocked. This can be seen within the 
+attributes for Properties and Resources are mocked. This can be seen within the
 `assignResourcesOutputs()` and `assignParameterOutputs()` of [validator.es6](src/validator.es6).
 A resource will always have a Ref of `mock-ref-RESOURCENAME` and will be attached other
 attributes which can be used with the `Fn::GetAtt` function. This allows for checking
