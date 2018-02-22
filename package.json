@@ -40,10 +40,6 @@
     "prepublish": "npm run build",
     "deploy": "npm version patch && npm publish"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/martysweet/cfn-lint.git"
-  },
   "bin": {
     "cfn-lint": "./lib/index.js"
   }
